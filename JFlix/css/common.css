@@ -1,0 +1,1078 @@
+@import url('responsive.css');
+
+/* Common CSS for the unified website */
+:root {
+  --primary-color: #e50914;
+  --primary-color-rgb: 229, 9, 20;
+  --secondary-color: #0071eb;
+  --background-color: #141414;
+  --card-background: #181818;
+  --text-color: #ffffff;
+  --text-secondary: #b3b3b3;
+  --hover-color: #e50914;
+  --navbar-height: 70px;
+  --transition-speed: 0.3s;
+  --border-radius: 4px;
+  --anime-color: #7b68ee;
+  --korean-color: #ff69b4;
+  --movies-color: #8A2BE2; /* Changed from red to purple */
+  --tvshows-color: #0071eb;
+  --cartoon-color: #ff9900;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.5;
+  /* overflow-x: hidden; --- Removed to fix a stacking context issue that was trapping the mobile menu. */
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.btn {
+  padding: 8px 16px;
+  border-radius: var(--border-radius);
+  font-weight: bold;
+  transition: background-color var(--transition-speed);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.watch-btn {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.watch-btn:hover {
+  background-color: #f40612;
+}
+
+.details-btn {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.details-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.trailer-btn {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+.trailer-btn:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.share-btn {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.share-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--navbar-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  z-index: 1001;
+  transition: background-color var(--transition-speed);
+  background-color: transparent;
+}
+
+.navbar.scrolled {
+  background-color: var(--background-color);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 50px; /* Increased height to accommodate the tagline in the SVG */
+  margin-right: 10px;
+}
+
+/* Hamburger Menu Button */
+.hamburger-menu {
+  display: none; /* Hidden by default, shown on mobile */
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.2rem; /* Adjust size as needed */
+  cursor: pointer;
+  padding: 5px;
+  align-items: center;
+  gap: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* cross-browser centering */
+  z-index: 1002; /* Ensure it's on top */
+}
+
+.hamburger-menu i {
+  font-size: 1.5rem; /* Icon size */
+}
+
+.hamburger-menu span {
+  font-size: 1rem; /* "Menu" text size */
+  font-weight: 500;
+}
+
+/* Tagline is now part of the SVG logo */
+.logo-tagline {
+  display: none; /* Hide the separate tagline element */
+}
+
+/* Default (Desktop) .nav-links styles */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style: none; /* In case it was ever set elsewhere */
+  padding: 0;
+  margin: 0;
+  position: static; /* Default flow */
+  flex-direction: row; /* Horizontal links */
+  background-color: transparent; /* No background by default */
+  box-shadow: none; /* No shadow by default */
+  width: auto; /* Auto width by default */
+}
+
+/* Default (Desktop) .nav-links a styles */
+.nav-links a {
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: var(--border-radius);
+  transition: color var(--transition-speed), background-color var(--transition-speed);
+  color: var(--text-color); /* Ensure default text color */
+  text-decoration: none;
+  border-bottom: none; /* Ensure no mobile border by default */
+  text-align: left; /* Default text alignment */
+  width: auto; /* Default width */
+}
+
+.nav-links a:hover {
+  color: var(--hover-color);
+  background-color: transparent; /* Or a subtle hover background if desired for desktop */
+}
+
+.nav-links a.active {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+/* Buy me a Coffee button */
+.coffee-btn {
+  background-color: #ff0000;
+  color: #000;
+  padding: 8px 15px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.coffee-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.coffee-btn i {
+  font-size: 1rem;
+}
+
+.nav-links a {
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: var(--border-radius);
+  transition: color var(--transition-speed);
+}
+
+.nav-links a:hover {
+  color: var(--hover-color);
+}
+
+.nav-links a.active {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.nav-links a.anime {
+  color: var(--anime-color);
+}
+
+.nav-links a.anime.active,
+.nav-links a.anime:hover {
+  color: var(--anime-color);
+  border-bottom-color: var(--anime-color);
+}
+
+.nav-links a.korean {
+  color: var(--korean-color);
+}
+
+.nav-links a.korean.active,
+.nav-links a.korean:hover {
+  color: var(--korean-color);
+  border-bottom-color: var(--korean-color);
+}
+
+.nav-links a.cartoon {
+  color: var(--cartoon-color);
+}
+
+.nav-links a.cartoon.active,
+.nav-links a.cartoon:hover {
+  color: var(--cartoon-color);
+  border-bottom-color: var(--cartoon-color);
+}
+
+.nav-links a.movies {
+  color: var(--movies-color);
+}
+
+.nav-links a.tvshows {
+  color: var(--tvshows-color);
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 0 10px;
+}
+
+.search-bar {
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 8px 16px 8px 35px;
+  color: white;
+  width: 200px;
+  transition: all var(--transition-speed);
+  position: relative;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  background-size: 16px;
+  cursor: pointer;
+}
+
+.search-bar:focus {
+  outline: none;
+  width: 250px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+}
+
+.search-bar::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--background-dark);
+  color: var(--text-color);
+  padding: 40px 0 20px;
+  margin-top: 50px;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-logo {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 20px;
+}
+
+.footer-logo-img {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 2;
+  justify-content: space-around;
+}
+
+.footer-section {
+  margin: 0 10px 20px;
+  min-width: 150px;
+}
+
+.footer-section h3 {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}
+
+.footer-section a {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: var(--primary-color);
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-color);
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.faq-link {
+  margin-top: 10px;
+  padding-top: 5px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  margin-top: 30px;
+  border-top: 1px solid #333;
+  color: var(--text-secondary);
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2000;
+  overflow-y: auto;
+}
+
+/* Donation Modal Overlay */
+.modal-overlay {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if content is too long */
+  background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
+  z-index: 1000; /* Sit on top */
+  justify-content: center; /* Center content horizontally (for flex) */
+  align-items: center; /* Center content vertically (for flex) */
+}
+
+.modal-content {
+  position: relative;
+  background-color: var(--card-background);
+  margin: 5% auto;
+  width: 90%;
+  max-width: 900px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.close:hover {
+  color: var(--primary-color);
+}
+
+/* Search Modal */
+.search-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 2000;
+  overflow-y: auto;
+  padding: 100px 20px 20px;
+}
+
+.search-modal.show {
+  display: block;
+}
+
+.search-container {
+  max-width: 800px;
+}
+
+/* Share Modal - New Design (Copy Link First) */
+.share-modal-content {
+  display: flex;
+  flex-direction: column;
+  max-width: 420px;
+  padding: 25px;
+  margin: 10vh auto;
+  background-color: var(--card-background);
+  border-radius: 8px;
+  text-align: center; /* Default text alignment */
+}
+
+/* .close button is absolutely positioned, its order in flex doesn't strictly matter for placement */
+/* but good for logical order if CSS for positioning failed */
+.share-modal-content .close {
+  order: -2; 
+}
+
+.share-modal-content h3#share-modal-title-text {
+  order: -1; /* Title appears first in flow */
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.copy-link-container {
+  order: 1; /* Copy link section after title */
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px; /* Space before social icons */
+  align-items: center;
+}
+
+.copy-link-container input#share-link-input {
+  flex-grow: 1;
+  padding: 0 12px;
+  border: 1px solid #555555;
+  background-color: #333333;
+  color: var(--text-color);
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  height: 40px;
+}
+
+.copy-link-container .btn.copy-link-btn {
+  padding: 0 15px;
+  height: 40px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: var(--border-radius);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy-link-container .btn.copy-link-btn:hover {
+  background-color: #f40612;
+}
+
+.copy-link-container .btn.copy-link-btn i {
+  margin-right: 6px;
+  font-size: 1rem;
+}
+
+.share-options {
+  order: 2; /* Social icons after copy link */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.share-options .social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.share-options .social-icon:hover {
+  opacity: 0.85;
+}
+
+.share-options .social-icon i {
+  font-size: 1.5rem;
+  color: white;
+}
+
+/* Specific social icon background colors (maintained) */
+.share-options .social-icon.facebook  { background-color: #1877F2; }
+.share-options .social-icon.twitter   { background-color: #1DA1F2; }
+.share-options .social-icon.whatsapp  { background-color: #25D366; }
+.share-options .social-icon.telegram  { background-color: #0088CC; }
+.share-options .social-icon.reddit    { background-color: #FF4500; }
+.share-options .social-icon.email     { background-color: #7f8c8d; }
+
+p#copy-link-feedback.copy-feedback {
+  order: 3; /* Feedback message last */
+  text-align: center;
+  font-size: 0.85rem;
+  min-height: 1.2em;
+  color: #aaa;
+  margin-top: 15px;
+}
+
+.search-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.search-input-wrapper {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+#search-input {
+  width: 100%;
+  padding: 10px 40px 10px 40px;
+  font-size: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: 12px center;
+  background-size: 18px;
+  transition: all 0.3s ease;
+}
+
+#search-input:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.search-exit-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.search-filters {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Category badges */
+.category-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-left: 10px;
+  vertical-align: middle;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.movies-badge {
+  background-color: var(--movies-color);
+}
+
+.tvshows-badge {
+  background-color: var(--tvshows-color);
+}
+
+.anime-badge {
+  background-color: var(--anime-color);
+}
+
+.korean-badge {
+  background-color: var(--korean-color);
+}
+
+.cartoon-badge {
+  background-color: var(--cartoon-color);
+}
+
+/* Movie badge for anime movies */
+.movie-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin-top: 5px;
+  background-color: var(--movies-color);
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.filter-btn {
+  padding: 6px 10px;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 12px;
+}
+
+.filter-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.filter-btn.active {
+  background-color: var(--primary-color);
+}
+
+.filter-btn.anime.active {
+  background-color: var(--anime-color);
+}
+
+.filter-btn.korean.active {
+  background-color: var(--korean-color);
+}
+
+.filter-btn.cartoon.active {
+  background-color: var(--cartoon-color);
+}
+
+.filter-btn.movies.active {
+  background-color: var(--movies-color);
+}
+
+.filter-btn.tvshows.active {
+  background-color: var(--tvshows-color);
+}
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+}
+
+/* Share Modal Styles */
+#share-modal .modal-content {
+  max-width: 450px;
+  padding: 25px;
+  background-color: #2c2c2c; /* Darker background for modal */
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+}
+
+#share-modal .close {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+#share-modal .close:hover,
+#share-modal .close:focus {
+  color: var(--text-color);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#share-modal-title-text {
+  text-align: center;
+  font-size: 1.4em;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+.share-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .navbar {
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 992px) {
+  :root {
+    --navbar-height: 60px;
+  }
+  .navbar {
+    padding: 0 20px;
+  }
+  .logo img {
+    height: 40px;
+  }
+  .nav-links {
+    gap: 10px; /* Reduce gap between nav links */
+  }
+  .nav-links a {
+    padding: 6px 8px; /* Reduce padding for nav links */
+    font-size: 0.9rem;
+  }
+  .coffee-btn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+  .search-bar {
+    max-width: 200px; /* Allow search bar to shrink */
+  }
+  .btn {
+    padding: 7px 14px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px; /* Adjust base font size for mobile */
+  }
+  .navbar {
+    padding: 0 15px;
+  }
+  .nav-links {
+    gap: 5px;
+    flex-wrap: wrap; /* Allow nav links to wrap if they don't fit */
+    justify-content: flex-start; /* Align wrapped items to the start */
+  }
+  .nav-links a {
+    padding: 5px 6px;
+    font-size: 0.85rem;
+  }
+  .nav-right {
+    gap: 10px;
+  }
+  .search-container {
+    position: static; /* Make search bar part of the flow or handle differently */
+    margin-left: 0;
+  }
+  .profile-dropdown .dropdown-toggle img {
+    width: 30px;
+    height: 30px;
+  }
+  .modal-content {
+    padding: 20px;
+    margin: 20px;
+  }
+  .modal-header h2 {
+    font-size: 1.5rem;
+  }
+  /* Center email in hamburger menu */
+  .nav-links.active #auth-button-container,
+  .nav-links.active #auth-button-container .user-dropdown,
+  .nav-links.active #auth-button-container .user-dropdown .dropdown-toggle {
+    width: 100%; /* Make auth container, dropdown, and button full width */
+  }
+
+  .nav-links.active #auth-button-container .user-dropdown .dropdown-toggle {
+    justify-content: center; /* Center flex items (email text and icon) in the button */
+  }
+
+  .btn {
+    padding: 10px 15px; /* Ensure buttons are easy to tap */
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar {
+    height: auto; /* Allow navbar to grow if links wrap */
+    flex-direction: row; /* Keep logo and hamburger on same line */
+    justify-content: space-between; /* Logo left, hamburger right (primary method) */
+    align-items: center; /* Vertically align items */
+    padding: 10px 15px;
+    width: 100%; /* Ensure navbar takes full width */
+  }
+  .navbar.scrolled {
+    padding: 10px 15px; /* Consistent padding when scrolled */
+  }
+  .logo {
+    margin-bottom: 0; /* Reset margin */
+    margin-right: auto; /* Push hamburger menu to the right */
+  }
+  .hamburger-menu {
+    display: flex; /* Show hamburger menu */
+    /* flex-shrink: 0; */ /* Ensure hamburger doesn't shrink if space is tight - usually not needed here */
+  }
+  .nav-links {
+    justify-content: center; /* Center nav links when stacked */
+    width: 100%;
+    margin-bottom: 10px; /* Space if nav-right is below */
+  }
+  .nav-right {
+    width: 100%;
+    justify-content: space-between; /* Space out search and profile */
+  }
+  .search-bar {
+    max-width: none; /* Allow search to take more space if needed */
+    width: calc(100% - 50px); /* Example: leave space for profile icon */
+  }
+  .btn {
+    padding: 7px 14px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 420px) {
+    /* Further fine-tuning for very small screens */
+    .nav-links a {
+        font-size: 0.8rem;
+        padding: 4px 5px;
+    }
+    .coffee-btn {
+        display: none; /* Hide coffee button on very small screens to save space */
+    }
+    .search-bar {
+        width: 120px;
+        padding: 6px 12px;
+    }
+    .search-bar:focus {
+        width: 150px;
+    }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    /* --- Mobile specific styles for .nav-links --- */
+    position: fixed;      /* Position relative to viewport to ensure it's on top */
+    top: var(--navbar-height); /* Start below the navbar */
+    left: 0;
+    width: 100%;
+    height: calc(100vh - var(--navbar-height)); /* Fill remaining viewport height */
+    background-color: var(--background-color); /* Dark background for dropdown */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5); /* Shadow for depth */
+    flex-direction: column; /* Stack links vertically */
+    align-items: stretch;   /* Make items take full width for easier tapping */
+    padding: 0; /* Reset padding, individual links will have padding */
+    display: none; /* Hidden by default, shown by JS with .active */
+    z-index: 9999; /* High z-index to be on top of everything */
+    overflow-y: auto;     /* Allow scrolling if content overflows */
+  }
+
+  .nav-links.active {
+    display: flex; /* Show when active (JS toggles this) */
+  }
+
+  /* Mobile specific styles for links within .nav-links */
+  .nav-links a {
+    width: 100%; /* Full width for tappable area */
+    text-align: center;
+    padding: 15px 20px; /* Generous padding for touch */
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-size: 1rem; /* Slightly larger font for mobile menu */
+    font-weight: 500;
+    color: var(--text-color);
+    border-radius: 0; /* No border radius for full-width items */
+  }
+
+  .nav-links a:last-child {
+    border-bottom: none;
+  }
+
+  .nav-links a:hover {
+    background-color: rgba(255,255,255,0.05); /* Subtle hover for mobile */
+    color: var(--primary-color);
+  }
+
+  .nav-links a.active {
+    background-color: rgba(var(--primary-color-rgb), 0.1); /* Use RGB for opacity with primary color */
+    color: var(--primary-color);
+    font-weight: bold;
+  }
+
+  .nav-right {
+    width: 100%;
+    justify-content: space-between; /* Space out search and profile */
+  }
+}
+
+@media (max-width: 480px) {
+  .logo img {
+    height: 30px;
+  }
+  
+  .logo-tagline {
+    display: none;
+  }
+  
+  /* Styles for nav-links a within the active hamburger menu */
+  .nav-links.active a {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+
+  .hamburger-menu {
+    font-size: 1.6rem; /* Slightly smaller icon */
+  }
+  
+  .search-bar {
+    width: 120px;
+    padding: 6px 12px;
+  }
+  
+  .search-bar:focus {
+    width: 150px;
+  }
+}
+
+/* Hide old Supabase email confirmation note */
+.signup-confirmation-note {
+  display: none !important;
+}
+
+.email-note {
+  display: block;
+  margin-top: 2px;
+  margin-bottom: 8px;
+  padding-left: 2px;
+  color: #f0c14b; /* soft yellow */
+  font-size: 0.85rem;
+  font-style: italic;
+  line-height: 1.3;
+}
+
+.signup-email-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- JUNE 2025 UPDATE: Hide legacy search tags and improve mobile search bar responsiveness --- */
+.search-tags {
+  display: none !important; /* Remove tag buttons from UI */
+}
+
+@media (max-width: 768px) {
+  /* Make navbar search bar occupy full available width on smaller screens */
+  .search-bar {
+    width: 100% !important;
+    max-width: none !important;
+  }
+}
+
+/* --- Responsive Advanced Search Filters --- */
+.advanced-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.advanced-filters select {
+  flex: 1 1 100%;
+  max-width: 100%;
+  padding: 8px 12px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+@media (min-width: 600px) {
+  .advanced-filters select {
+    flex: 1 1 calc(33.33% - 8px); /* 3 per row with gap */
+  }
+}
+
+/* --- JUNE 2025 UPDATE: Mobile Responsiveness for Flexible Layout --- */
+@media (max-width: 768px) {
+  .navbar,
+  .content-container,
+  .footer-content,
+  .banner {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  /* Forcing rows in some containers to not have negative margins that might cause overflow */
+  .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
