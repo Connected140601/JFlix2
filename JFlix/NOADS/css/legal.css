@@ -1,0 +1,101 @@
+/* Legal pages styling */
+
+.legal-container {
+  max-width: 1000px;
+  margin: 100px auto 50px;
+  padding: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  color: var(--text-color);
+}
+
+.legal-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.legal-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.legal-header p {
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.legal-content {
+  line-height: 1.6;
+}
+
+.legal-content section {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.legal-content section:last-child {
+  border-bottom: none;
+}
+
+.legal-content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+}
+
+.legal-content p {
+  margin-bottom: 15px;
+}
+
+.legal-content ul, 
+.legal-content ol {
+  margin: 15px 0;
+  padding-left: 20px;
+}
+
+.legal-content li {
+  margin-bottom: 10px;
+}
+
+.legal-content a {
+  color: var(--secondary-color);
+  text-decoration: underline;
+}
+
+.legal-content a:hover {
+  color: var(--primary-color);
+}
+
+/* Responsive design for legal pages */
+@media (max-width: 768px) {
+  .legal-container {
+    padding: 20px;
+    margin: 80px 15px 30px;
+  }
+  
+  .legal-header h1 {
+    font-size: 2rem;
+  }
+  
+  .legal-content h2 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .legal-container {
+    padding: 15px;
+    margin: 70px 10px 20px;
+  }
+  
+  .legal-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .legal-content h2 {
+    font-size: 1.2rem;
+  }
+}
