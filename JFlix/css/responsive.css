@@ -1,0 +1,93 @@
+/* Global mobile-friendly tweaks */
+
+/* Utility resets */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Buttons */
+.btn, .premium-upgrade-btn, button {
+  padding: .65rem 1.2rem;
+  font-size: 1rem;
+}
+
+/* Containers */
+.row, .list, .content-container {
+  padding: 0 4vw;
+}
+
+
+/* Heading scaling */
+h1 {font-size: 2rem;}
+h2 {font-size: 1.5rem;}
+@media (max-width: 600px) {
+  h1 {font-size: 1.6rem;}
+  h2 {font-size: 1.3rem;}
+}
+
+/* Banner adjustments */
+@media (max-width: 480px) {
+  .banner-content, .premium-banner-content {
+    padding: 0 1rem;
+    text-align: center;
+  }
+  .banner-buttons, .premium-banner .pricing-tiers {
+    flex-direction: column;
+    gap: .75rem;
+  }
+}
+
+/* Card list tweaks */
+@media (max-width: 600px) {
+  .list {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  .media-card {
+    flex: 0 0 70vw;
+    scroll-snap-align: start;
+  }
+}
+
+/* Search bar & filters mobile tweaks */
+@media (max-width: 600px) {
+  /* Collapse search wrapper */
+  .search-wrapper {
+    width: 100%;
+    margin: 0 0 10px;
+    justify-content: center;
+  }
+  .search-bar {
+    width: 100% !important; /* override inline/desktop widths */
+    max-width: none;
+    padding-left: 38px; /* keep icon space */
+  }
+  .search-input-wrapper {
+    width: 100%;
+  }
+  /* filter buttons become horizontal scroll row */
+  .filter-buttons {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scroll-snap-type: x mandatory;
+  }
+  .filter-buttons::-webkit-scrollbar {
+    display: none; /* hide chrome scrollbar */
+  }
+  .filter-btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    scroll-snap-align: start;
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+}
+
+/* Modal widths */
+.auth-modal-content, .modal-content {
+  max-width: 480px;
+  width: 95vw;
+}
