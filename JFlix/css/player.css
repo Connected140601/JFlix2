@@ -1,0 +1,858 @@
+/* Player page styles for the unified website */
+
+/* Server 1 Notice */
+#server1-notice {
+  /* display: flex; /* Controlled by JS, default hidden by inline style in HTML */
+  align-items: center;
+  gap: 8px;
+  background-color: #2a2a2a; /* Dark background */
+  color: #eee; /* Light text */
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 10px; /* Space it from the title below */
+  font-size: 0.85rem;
+  border: 1px solid #444; /* Subtle border */
+}
+
+#server1-notice i.fa-cloud {
+  color: #a0a0a0; /* Lighter grey cloud icon for better visibility on dark bg */
+  font-size: 1.2em; /* Slightly larger icon */
+}
+
+#server1-notice span {
+  line-height: 1.4;
+}
+
+/* Player page container */
+.player-page-container {
+  padding-top: var(--navbar-height);
+}
+
+/* Movie banner */
+.movie-banner-container {
+  position: relative;
+  height: 40vh;
+  overflow: hidden;
+}
+
+.movie-banner {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.movie-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 20, 20, 0.5) 0%,
+    rgba(20, 20, 20, 0.7) 50%,
+    rgba(20, 20, 20, 1) 100%
+  );
+}
+
+/* Back to details button - styled to match Back to home button on details page */
+.movie-banner .back-button {
+  position: absolute;
+  top: 80px; /* Positioned below the navbar, similar to the details page */
+  left: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 100;
+  transition: background-color var(--transition-speed);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  width: fit-content;
+}
+
+.movie-banner .back-button:hover {
+  background-color: var(--primary-color);
+}
+
+.movie-info-overlay {
+  position: absolute;
+  bottom: 30px;
+  left: 40px;
+  z-index: 10;
+}
+
+.movie-info-overlay h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.movie-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: var(--text-secondary);
+}
+
+.stars {
+  color: #FFD700;
+}
+
+.genre-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.genre-tag {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+.genre-tag.anime {
+  background-color: rgba(123, 104, 238, 0.3);
+  border: 1px solid var(--anime-color);
+}
+
+.genre-tag.korean {
+  background-color: rgba(255, 105, 180, 0.3);
+  border: 1px solid var(--korean-color);
+}
+
+.genre-tag.movies {
+  background-color: rgba(229, 9, 20, 0.3);
+  border: 1px solid var(--movies-color);
+}
+
+.genre-tag.tvshows {
+  background-color: rgba(0, 113, 235, 0.3);
+  border: 1px solid var(--tvshows-color);
+}
+
+.genre-tag.cartoon {
+  background-color: rgba(255, 153, 0, 0.3);
+  border: 1px solid var(--cartoon-color);
+}
+
+/* Player content */
+.player-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 40px 0 40px; /* Added padding-top, adjusted side padding */
+  display: flex;
+  gap: 30px;
+}
+
+.player-section {
+  flex: 1;
+}
+
+.info-section {
+  width: 300px;
+  flex-shrink: 0;
+}
+
+/* Player box */
+.player-box {
+  background-color: var(--card-background);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: -50px;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  max-width: 900px; /* Constrain player width, indirectly height */
+  margin-left: auto; /* Center if player-section is wider */
+  margin-right: auto; /* Center if player-section is wider */
+}
+
+/* Player header title */
+.player-header-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.player-header-title h3 {
+  font-size: 1.2rem;
+}
+
+/* Server controls */
+.server-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.change-server-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.server-button {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: background-color var(--transition-speed);
+}
+
+.server-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.server-button.active {
+  background-color: var(--primary-color);
+}
+
+.server-button.active.anime {
+  background-color: var(--anime-color);
+}
+
+.server-button.active.korean {
+  background-color: var(--korean-color);
+}
+
+.server-button.active.movies {
+  background-color: var(--movies-color);
+}
+
+.server-button.active.tvshows {
+  background-color: var(--tvshows-color);
+}
+
+.server-buttons-container {
+  display: flex;
+  gap: 5px;
+}
+
+/* Server message */
+.server-message {
+  padding: 10px 20px;
+  background-color: rgba(0, 113, 235, 0.1);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.server-message i {
+  color: var(--secondary-color);
+}
+
+/* Feature sections */
+.vidsrcxyz-features,
+.videasy-features,
+.embed2-features,
+.vidsrcto-features {
+  padding: 10px 20px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-badge {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+}
+
+.feature-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.feature-list li {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.feature-list li i {
+  color: var(--primary-color);
+}
+
+/* Subtitle message */
+.subtitle-message {
+  padding: 10px 20px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.subtitle-message i {
+  color: var(--primary-color);
+}
+
+/* Movie info */
+.movie-info {
+  padding: 15px;
+  padding: 10px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 20px; /* Space below player-box */
+  max-width: 900px; /* Align with player-box */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.movie-info h4 {
+  font-size: 1rem;
+}
+
+/* Video container */
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+}
+
+.video-message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  color: var(--text-secondary);
+  gap: 15px;
+  font-size: 1.1rem;
+}
+
+.video-message i {
+  font-size: 2rem;
+  color: var(--primary-color);
+}
+
+#video-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Movie recommendations */
+.movie-recommendations-container {
+  padding: 20px;
+}
+
+.movie-recommendations-container h4 {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.movie-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 15px;
+}
+
+/* Movie info box */
+.movie-info-box {
+  background-color: var(--card-background);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.movie-info-box h3 {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.info-content {
+  color: var(--text-secondary);
+}
+
+.genres-section,
+.budget-section,
+.box-office-section {
+  margin-bottom: 15px;
+}
+
+.genres-section h4 {
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.detail-label {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+/* About movie */
+.about-movie {
+  background-color: var(--card-background);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.about-movie h3 {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.about-movie p {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.movie-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.detail-item {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.detail-value {
+  font-weight: normal;
+}
+
+/* Share section */
+.share-section {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.share-button {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: background-color var(--transition-speed);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.share-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Episode selector */
+.episode-selector {
+  margin-top: 20px;
+  padding: 0 20px 20px;
+  max-width: 900px; /* Align with player-box */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.episode-selector h4 {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.season-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+
+.season-tab {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: background-color var(--transition-speed);
+  white-space: nowrap;
+}
+
+.season-tab:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.season-tab.active {
+  background-color: var(--primary-color);
+}
+
+.season-tab.active.anime {
+  background-color: var(--anime-color);
+}
+
+.season-tab.active.korean {
+  background-color: var(--korean-color);
+}
+
+.season-tab.active.movies {
+  background-color: var(--movies-color);
+}
+
+.season-tab.active.tvshows {
+  background-color: var(--tvshows-color);
+}
+
+.episodes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 10px;
+  max-height: 300px; /* Set a max height for the grid */
+  overflow-y: auto;  /* Enable vertical scroll if content overflows */
+  padding-right: 5px; /* Space for scrollbar, adjust if needed */
+}
+
+.episode-item {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 8px 0;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  text-align: center;
+  transition: background-color var(--transition-speed);
+}
+
+.episode-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.episode-item.active {
+  background-color: var(--primary-color);
+}
+
+.episode-item.active.anime {
+  background-color: var(--anime-color);
+}
+
+.episode-item.active.korean {
+  background-color: var(--korean-color);
+}
+
+.episode-item.active.movies {
+  background-color: var(--movies-color);
+}
+
+.episode-item.active.tvshows {
+  background-color: var(--tvshows-color);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .player-content {
+    flex-direction: column;
+  }
+  
+  .info-section {
+    width: 100%;
+  }
+  
+  .movie-details {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .movie-banner-container {
+    height: 30vh;
+  }
+  
+  .movie-info-overlay {
+    left: 20px;
+    bottom: 20px;
+  }
+  
+  .movie-info-overlay h1 {
+    font-size: 1.5rem;
+  }
+  
+  .player-content {
+    padding: 0 20px;
+  }
+  
+  .server-buttons-container {
+    flex-wrap: wrap;
+  }
+  
+  .feature-list {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .movie-details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .player-header-title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .server-controls {
+    flex-wrap: wrap;
+  }
+  
+  .movie-list {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+
+  /* Mobile overrides for player layout */
+  .player-box,
+  .movie-info,
+  .episode-selector {
+    max-width: 100%; /* Allow full width */
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .player-box {
+    margin-top: -20px; /* Less aggressive banner overlap */
+  }
+
+  .movie-info {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .episode-selector {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .episodes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr)); /* Smaller episode buttons */
+  }
+
+  /* --- Cascade's Mobile Player Enhancements --- */
+
+  /* Stack player content and info section */
+  .player-content {
+    flex-direction: column;
+    padding-left: 15px;
+    padding-right: 15px;
+    gap: 20px; /* Space between player section and info section when stacked */
+  }
+
+  .player-section,
+  .info-section {
+    width: 100%;
+  }
+
+  /* Responsive Video Player */
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    width: 100%;
+    background-color: #000; /* Fallback for empty iframe */
+  }
+
+  .video-container iframe#video-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  /* Adjust Player Header and Server Controls */
+  .player-header-title {
+    flex-direction: column; /* Stack title and server controls */
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 15px; /* Adjusted padding */
+  }
+  
+  .server-controls {
+    /* flex-wrap: wrap; is already in existing mobile styles */
+    gap: 6px; /* Tighter gap for server buttons */
+    width: 100%; /* Ensure controls take full width */
+  }
+
+  .change-server-text {
+    font-size: 0.85rem;
+    margin-bottom: 5px; /* Space if it wraps */
+    display: block; /* Ensure it takes its own line if needed */
+  }
+
+  .server-button {
+    padding: 5px 8px; /* Smaller padding */
+    font-size: 0.75rem; /* Smaller font */
+  }
+
+  /* Server Feature Icons and Text */
+  .feature-list {
+    padding-left: 15px; /* Indent feature list slightly */
+  }
+  .feature-list li {
+    font-size: 0.75rem; /* Smaller feature text */
+    margin-bottom: 3px;
+  }
+
+  .feature-list li i {
+    font-size: 0.85em; /* Smaller icons relative to new li font-size */
+    margin-right: 5px;
+  }
+  
+  .feature-badge {
+    font-size: 0.8rem;
+    padding: 3px 6px;
+    margin-bottom: 5px; /* Space below badge */
+  }
+
+  /* Reduce banner height for more player space */
+  .movie-banner-container {
+    height: 25vh; /* Further reduced banner height */
+  }
+  
+  .movie-banner .back-button {
+    top: calc(var(--navbar-height) + 5px); /* Adjust if navbar height changes */
+    left: 10px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+
+  .movie-info-overlay h1 {
+    font-size: 1.3rem;
+  }
+  .movie-meta {
+    font-size: 0.75rem;
+    gap: 6px;
+  }
+  .genre-tag {
+    font-size: 0.7rem;
+    padding: 3px 7px;
+  }
+
+  /* Messages styling */
+  .server-message,
+  .subtitle-message {
+    font-size: 0.75rem;
+    padding: 8px 15px;
+  }
+  .server-message i,
+  .subtitle-message i {
+    margin-right: 4px;
+  }
+
+  /* Ensure player box itself doesn't have excessive top margin from banner */
+  .player-box {
+     margin-top: 15px; /* Overriding existing mobile -20px and desktop -50px */
+  }
+  /* --- End of Cascade's Mobile Player Enhancements --- */
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 600px) {
+  .movie-info {
+    padding: 10px; /* Reduced padding for smaller screens */
+  }
+
+  #server1-notice,
+  #server2-notice,
+  #server3-notice {
+    flex-direction: column !important; /* Stack items vertically */
+    align-items: flex-start !important; /* Align items to the start */
+    padding: 10px; 
+    border: 1px solid #333; /* Optional: visual grouping */
+    border-radius: 5px;
+    margin-bottom: 12px; /* Space between notices */
+  }
+
+  /* Thumbnails/Icons in notices */
+  #server1-notice img,
+  #server2-notice video,
+  #server3-notice img {
+    margin-right: 0 !important; /* Remove right margin */
+    margin-bottom: 10px !important; /* Add bottom margin for spacing when stacked */
+    /* Keep existing max-width (e.g., 50px or 70px) from inline styles */
+  }
+
+  /* Text in notices */
+  #server1-notice span,
+  #server2-notice span,
+  #server3-notice span {
+    font-size: 0.8em !important; /* Slightly smaller font for mobile */
+    line-height: 1.4 !important; /* Improve readability */
+    text-align: left !important;
+    width: 100%; /* Ensure span takes full width in column layout */
+  }
+
+  /* Adjust icons within the text spans if needed */
+  #server1-notice span > i,
+  #server2-notice span > i,
+  #server3-notice span > i {
+    font-size: 0.95em; /* Adjust icon size relative to new text size */
+  }
+
+  /* Ensure player iframe/video scales */
+  .video-container iframe,
+  .video-container video {
+    max-width: 100%;
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  /* Recommended media section - basic stacking example */
+  /* You might have more specific classes for your cards */
+  .recommended-section .card-container {
+    flex-direction: column; /* Stack cards */
+    align-items: center; /* Center cards when stacked */
+  }
+
+  .recommended-section .card {
+    width: 80%; /* Make cards wider when stacked */
+    margin-bottom: 15px;
+  }
+
+  /* Adjust player controls container if you have one */
+  .player-controls {
+    padding: 5px;
+  }
+  .player-controls button {
+    font-size: 0.9em;
+    padding: 5px 8px;
+  }
+
+  /* Smartphone browser recommendation notice - already handled, but ensure it's styled well */
+  .smartphone-notice {
+    font-size: 13px; /* Ensure it's not too small */
+    padding: 8px;
+    margin: 10px 0;
+  }
+}
