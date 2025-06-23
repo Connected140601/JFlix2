@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy - JFlix</title>
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/legal.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/donation-modal.css?v=1.1">
+  <link rel="stylesheet" href="css/auth.css?v=1.1">
+  <script defer src="../js/auth.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="js/navbar.js"></script>
+
+
+
+</head>
+
+<body>
+  <div class="navbar">
+    <div class="logo">
+      <img src="images/logo.svg" alt="JFlix Logo">
+    </div>
+    <button class="hamburger-menu" aria-label="Toggle navigation" aria-expanded="false">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="movies.html" class="movies">Movies</a>
+      <a href="tvshows.html" class="tvshows">TV Shows</a>
+      <a href="anime.html" class="anime">Anime</a>
+      <a href="korean.html" class="korean">Korean TV</a>
+      <a href="cartoon.html" class="cartoon">Cartoons</a>
+      <a href="index.html?open_search=true" class="search-nav-link"><i class="fas fa-search"></i> Search</a>
+      <button id="login-button-nav" class="auth-nav-btn"><i class="fas fa-sign-in-alt"></i> Login / Sign Up</button>
+      <div id="auth-button-container" style="display: none;">
+        <!-- User info (email, logout button) will be injected here by JS when logged in -->
+      </div>
+    </div>
+  </div>
+
+  <div class="legal-container">
+    <div class="legal-header">
+      <h1>Privacy Policy</h1>
+      <p>Last Updated: May 24, 2025</p>
+    </div>
+
+    <div class="legal-content">
+      <section>
+        <h2>1. Introduction</h2>
+        <p>At JFlix, we respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your information when you use our website.</p>
+      </section>
+
+      <section>
+        <h2>2. Information We Collect</h2>
+        <p>We may collect the following types of information:</p>
+        <ul>
+          <li><strong>Usage Data:</strong> Information about how you use our website, including your browsing patterns, pages visited, and features used.</li>
+          <li><strong>Device Information:</strong> Information about your device, such as IP address, browser type, operating system, and device identifiers.</li>
+          <li><strong>Cookies and Similar Technologies:</strong> We use cookies and similar technologies to enhance your experience and collect information about your usage patterns.</li>
+        </ul>
+        <p>We do not collect personally identifiable information unless you voluntarily provide it to us.</p>
+      </section>
+
+      <section>
+        <h2>3. How We Use Your Information</h2>
+        <p>We use the information we collect to:</p>
+        <ul>
+          <li>Provide, maintain, and improve our services</li>
+          <li>Analyze usage patterns to enhance user experience</li>
+          <li>Detect and prevent fraudulent activity and security breaches</li>
+          <li>Comply with legal obligations</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>4. Third-Party Services</h2>
+        <p>JFlix utilizes third-party services and APIs to provide content. These third-party services may collect information about you when you interact with their content through our platform. We do not control these third parties or their privacy practices.</p>
+        <p>The content displayed on JFlix is hosted on third-party servers. We do not store or host any media content on our own servers. When you access content through our platform, you may be subject to the privacy policies of these third-party content providers.</p>
+      </section>
+
+      <section>
+        <h2>5. Data Security</h2>
+        <p>We implement reasonable security measures to protect your information from unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet or electronic storage is 100% secure.</p>
+      </section>
+
+      <section>
+        <h2>6. Your Rights</h2>
+        <p>Depending on your location, you may have certain rights regarding your personal information, including:</p>
+        <ul>
+          <li>The right to access information we have about you</li>
+          <li>The right to correct inaccurate information</li>
+          <li>The right to delete your information</li>
+          <li>The right to object to processing of your information</li>
+        </ul>
+        <p>To exercise these rights, please contact us using the information provided below.</p>
+      </section>
+
+      <section>
+        <h2>7. Children's Privacy</h2>
+        <p>Our services are not intended for individuals under the age of 13. We do not knowingly collect personal information from children under 13. If we become aware that we have collected personal information from a child under 13, we will take steps to delete that information.</p>
+      </section>
+
+      <section>
+        <h2>8. Changes to This Privacy Policy</h2>
+        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.</p>
+      </section>
+
+      <section>
+        <h2>9. Contact Us</h2>
+        <p>If you have any questions about this Privacy Policy, please contact us at privacy@jflix.example.com.</p>
+      </section>
+    </div>
+  </div>
+
+
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="images/logo.svg" alt="JFlix Logo" class="footer-logo-img">
+        <p>Your Ultimate Streaming Destination</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-section">
+          <h3>Navigation</h3>
+          <a href="index.html">Home</a>
+          <a href="movies.html">Movies</a>
+          <a href="tvshows.html">TV Shows</a>
+          <a href="anime.html">Anime</a>
+          <a href="korean.html">Korean TV</a>
+          <a href="cartoon.html">Cartoons</a>
+        </div>
+        <div class="footer-section">
+          <h3>Legal</h3>
+          <a href="terms.html">Terms of Service</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="disclaimer.html">Disclaimer</a>
+          <a href="dmca.html">DMCA</a>
+        </div>
+        <div class="footer-section">
+          <h3>Connect</h3>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61576333379034" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/jflix" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/jflix" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+          <a href="#" class="faq-link">FAQ</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 JFlix. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Donation Modal (copied from index.html) -->
+  <div class="donation-modal" id="donation-modal">
+    <div class="donation-container">
+      <span class="close" onclick="closeDonationModal()">&times;</span>
+      <div class="donation-header">
+        <i class="fas fa-mug-hot donation-icon"></i>
+        <h2>Support JFlix</h2>
+      </div>
+      <div class="donation-content">
+        <p>Thank you for supporting JFlix! Your donation helps maintain and improve the service.</p>
+        
+        <div class="donation-details">
+          <h3>GCash Account Details</h3>
+          <div class="account-info">
+            <p><strong>Account Number:</strong> 09761679955</p>
+            <p><strong>Account Name:</strong> Jxxxel S.</p>
+          </div>
+        </div>
+        
+        <button class="thank-you-btn" onclick="closeDonationModal()"><i class="fas fa-heart"></i> Thank You!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Donation Modal Scripts (copied from index.html) -->
+  <script>
+    // Donation Modal Functions
+    function openDonationModal() {
+      document.getElementById('donation-modal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeDonationModal() {
+      document.getElementById('donation-modal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+    
+    // Close modal when clicking outside the content
+    document.getElementById('donation-modal').addEventListener('click', function(event) {
+      if (event.target === this) {
+        closeDonationModal();
+      }
+    });
+  </script>
+
+
+<!-- Auth Modals -->
+<div id="login-modal" class="auth-modal">
+  <div class="auth-modal-content">
+    <span class="close-button">&times;</span>
+    <h2>Login</h2>
+    <form id="login-form">
+      <label for="login-email">Email</label>
+      <input type="email" id="login-email" required>
+      <label for="login-password">Password</label>
+      <input type="password" id="login-password" required>
+      <button type="submit">Login</button>
+    </form>
+    <p class="auth-message"></p> <!-- For inline messages -->
+    <a href="#" id="forgot-password-link" class="auth-modal-link">Forgot Password?</a>
+    <p class="auth-modal-link">Don't have an account? <a href="#" id="go-to-signup">Sign Up</a></p>
+  </div>
+</div>
+
+<div id="signup-modal" class="auth-modal">
+  <div class="auth-modal-content">
+    <span class="close-button">&times;</span>
+    <h2>Sign Up</h2>
+    <form id="signup-form">
+      <label for="signup-first-name">First Name</label>
+      <input type="text" id="signup-first-name" placeholder="First Name" required>
+      <label for="signup-last-name">Last Name</label>
+      <input type="text" id="signup-last-name" placeholder="Last Name" required>
+      <label for="signup-email">Email</label>
+      <input type="email" id="signup-email" placeholder="Email" required>
+      <label for="signup-password">Password (min. 6 characters)</label>
+      <input type="password" id="signup-password" placeholder="Password" required minlength="6">
+      <button type="submit">Sign Up</button>
+    </form>
+    <p class="auth-message"></p> <!-- For inline messages -->
+    <p class="auth-modal-link">Already have an account? <a href="#" id="go-to-login">Login</a></p>
+  </div>
+</div>
+
+<div id="password-reset-modal" class="auth-modal">
+  <div class="auth-modal-content">
+    <span class="close-button">&times;</span>
+    <h2>Reset Password</h2>
+    <form id="password-reset-form">
+      <label for="password-reset-email">Enter your email address:</label>
+      <input type="email" id="password-reset-email" required>
+      <button type="submit">Send Reset Link</button>
+    </form>
+    <p class="auth-message"></p> <!-- For inline messages -->
+    <p class="auth-modal-link"><a href="#" id="back-to-login-from-reset">Back to Login</a></p>
+  </div>
+</div>
+
+</body>
+</html>
