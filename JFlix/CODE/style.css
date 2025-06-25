@@ -1,0 +1,169 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 700px;
+    width: 100%;
+}
+
+h1 {
+    color: #005ea6; /* PayPal Blue */
+    margin-bottom: 20px;
+}
+
+.voucher-options {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.voucher-option {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    width: calc(33% - 40px);
+    min-width: 200px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    background-color: #f9f9f9;
+}
+
+.voucher-option h2 {
+    color: #333;
+    font-size: 1.2em;
+    margin-top: 0;
+}
+
+.voucher-option p {
+    font-size: 1em;
+    color: #555;
+}
+
+#paypal-button-container-15,
+#paypal-button-container-30,
+#paypal-button-container-50 {
+    margin-top: 20px;
+}
+
+#voucher-result {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #e6f7ff;
+    border: 1px solid #91d5ff;
+    border-radius: 8px;
+}
+
+#voucher-result h2 {
+    color: #005ea6;
+}
+
+#generated-voucher-code {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #007bff;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px dashed #007bff;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .voucher-options {
+        flex-direction: column;
+        align-items: center;
+    }
+    .voucher-option {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+}
+
+/* Loading indicator styles */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loading-spinner {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/* Navigation back to JFlix Account */
+.navigation-to-account {
+    margin-bottom: 25px; /* Space between button and main title */
+    text-align: left; /* Align button to the left */
+}
+
+.back-to-account-button {
+    display: inline-block;
+    padding: 12px 22px; /* Increased padding */
+    background-color: #e50914; /* JFlix red */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.95em;
+    font-weight: bold;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease; /* Smoother transitions */
+    border: none; /* Remove border if any */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Subtle shadow */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* Subtle text shadow */
+}
+
+.back-to-account-button:hover {
+    background-color: #c40812; /* Slightly darker JFlix red on hover */
+    transform: translateY(-2px); /* More noticeable lift */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Enhanced shadow on hover */
+}
+
+.back-to-account-button:active {
+    background-color: #a00000; /* Even darker red on active/click */
+    transform: translateY(0px);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2); /* Reduced shadow on active */
+}
+
+/* Adjustments for container if button is at the top */
+.container h1:first-of-type {
+    margin-top: 0; /* Remove top margin if h1 is now after the nav button */
+}
+
+.loading-overlay p {
+    margin-top: 20px;
+    color: white;
+    font-weight: bold;
+}

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Watch the latest and greatest Japanese Anime series and movies on JFlix. Dive into captivating stories and stunning animation.">
+  <meta name="keywords" content="JFlix, anime, Japanese anime, streaming anime, watch anime online, shonen, shojo, mecha, fantasy">
+  <link rel="canonical" href="https://jflix.pages.dev/anime.html">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jflix.pages.dev/anime.html">
+  <meta property="og:title" content="JFlix - Japanese Anime">
+  <meta property="og:description" content="Watch the latest and greatest Japanese Anime series and movies on JFlix. Dive into captivating stories and stunning animation.">
+  <meta property="og:image" content="https://jflix.pages.dev/images/logo.svg">
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://jflix.pages.dev/anime.html">
+  <meta property="twitter:title" content="JFlix - Japanese Anime">
+  <meta property="twitter:description" content="Watch the latest and greatest Japanese Anime series and movies on JFlix. Dive into captivating stories and stunning animation.">
+  <meta property="twitter:image" content="https://jflix.pages.dev/images/logo.svg">
+  <title>JFlix - Japanese Anime</title>
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/card-fix.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/loading.css">
+  <link rel="preload" href="css/home.css" as="style">
+  <link rel="preload" href="js/anime.js" as="script">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="/images/logo.svg">
+  <meta name="theme-color" content="#e50914">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/donation-modal.css?v=1.1">
+  <link rel="stylesheet" href="css/auth.css?v=1.1">
+  <script defer src="js/anime.js"></script>
+  <script defer src="js/navbar.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="js/auth.js?v=1.5"></script>
+  <script defer src="/js/install-modal.js?v=1.3"></script>
+  <link rel="stylesheet" href="css/install-modal.css">
+  
+  
+</head>
+
+<body>
+  <div class="navbar">
+    <div class="logo">
+      <img src="images/logo.svg" alt="JFlix Logo">
+    </div>
+    <button class="hamburger-menu" aria-label="Toggle navigation" aria-expanded="false">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="movies.html" class="movies">Movies</a>
+      <a href="tvshows.html" class="tvshows">TV Shows</a>
+      <a href="anime.html" class="active anime">Anime</a>
+      <a href="korean.html" class="korean">Korean TV</a>
+      <a href="cartoon.html" class="cartoon">Cartoons</a>
+      <a href="index.html?open_search=true" class="search-nav-link"><i class="fas fa-search"></i> Search</a>
+      <button id="login-button-nav" class="auth-nav-btn"><i class="fas fa-sign-in-alt"></i> Login / Sign Up</button>
+      <a href="#" id="install-app-button" class="auth-action-link">Install App</a>
+      <div id="auth-button-container" style="display: none;">
+        <!-- User info (email, logout button) will be injected here by JS when logged in -->
+      </div>
+    </div>
+  </div>
+
+  <div class="banner" id="banner" data-id="" data-type="">
+    <div class="banner-content">
+      <h1 id="banner-title"></h1>
+      <p id="banner-overview"></p>
+      <div class="banner-buttons">
+        <button class="btn watch-btn" onclick="watchFeatured()"><i class="fas fa-play"></i> Watch Now</button>
+        <button class="btn details-btn" onclick="showFeaturedDetails()"><i class="fas fa-info-circle"></i> Details</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-container">
+    <div class="row">
+      <h2><i class="fas fa-film category-icon"></i> Popular Anime Movies <span class="category-badge anime-badge">ANIME MOVIES</span></h2>
+      <div class="list" id="anime-movies-list"></div>
+    </div>
+
+    <div class="row">
+      <h2><i class="fas fa-star category-icon"></i> Top Rated Anime Series <span class="category-badge anime-badge">ANIME SERIES</span></h2>
+      <div class="list" id="top-rated-list"></div>
+    </div>
+
+    <div class="row">
+      <h2><i class="fas fa-dragon category-icon"></i> Popular Anime Series <span class="category-badge anime-badge">ANIME SERIES</span></h2>
+      <div class="list" id="popular-list"></div>
+    </div>
+
+    <div class="row">
+      <h2><i class="fas fa-calendar-plus category-icon"></i> Recently Added Anime Series <span class="category-badge anime-badge">ANIME SERIES</span></h2>
+      <div class="list" id="recent-list"></div>
+    </div>
+
+    <div class="row">
+      <h2><i class="fas fa-ticket-alt category-icon"></i> Currently Airing Anime Series <span class="category-badge anime-badge">ANIME SERIES</span></h2>
+      <div class="list" id="airing-list"></div>
+    </div>
+  </div>
+
+  <!-- Media Card Template (hidden, used by JavaScript) -->
+  <template id="media-card-template">
+    <div class="media-card">
+      <div class="card-poster-container">
+        <img class="card-poster" src="" alt="">
+        <div class="card-overlay">
+          <div class="card-buttons">
+            <button class="btn watch-btn"><i class="fas fa-play"></i> Watch</button>
+            <button class="btn details-btn"><i class="fas fa-info-circle"></i> Details</button>
+          </div>
+        </div>
+      </div>
+      <div class="card-info">
+        <h3 class="card-title"></h3>
+        <div class="card-rating"></div>
+        <p class="card-year"></p>
+      </div>
+    </div>
+  </template>
+
+  <!-- Quick View Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div class="modal-body">
+        <img id="modal-image" src="" alt="" />
+        <div class="modal-text">
+          <h2 id="modal-title"></h2>
+          <div class="modal-meta">
+            <span id="modal-year"></span>
+            <span class="separator">•</span>
+            <span id="modal-runtime"></span>
+            <span class="separator">•</span>
+            <div class="stars" id="modal-rating"></div>
+          </div>
+          <div id="modal-genres"></div>
+          <p id="modal-description"></p>
+          <div class="modal-buttons">
+            <button class="btn watch-btn" onclick="watchMovie()"><i class="fas fa-play"></i> Watch Now</button>
+            <button class="btn details-btn" onclick="viewDetails()"><i class="fas fa-info-circle"></i> View Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-modal" id="search-modal">
+    <span class="close" onclick="closeSearchModal()">&times;</span>
+    <div class="search-container">
+      <div class="search-input-wrapper">
+        <input type="text" id="search-input" placeholder="Search for Anime..." oninput="searchTMDB()" />
+        <button class="search-exit-btn" id="search-exit-btn" onclick="closeSearchModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="search-filters">
+        <button class="filter-btn active anime" data-type="anime">Anime</button>
+      </div>
+    </div>
+    <div class="results" id="search-results"></div>
+  </div>
+
+  <script type="text/javascript">
+  	atOptions = {
+  		'key' : '16bd3d63e3fa76356a75c7dd390644fb',
+  		'format' : 'iframe',
+  		'height' : 60,
+  		'width' : 468,
+  		'params' : {}
+  	};
+  </script>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="images/logo.svg" alt="JFlix Logo" class="footer-logo-img">
+        <p>Your Ultimate Streaming Destination</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-section">
+          <h3>Navigation</h3>
+          <a href="index.html">Home</a>
+          <a href="movies.html">Movies</a>
+          <a href="tvshows.html">TV Shows</a>
+          <a href="anime.html">Anime</a>
+          <a href="korean.html">Korean TV</a>
+          <a href="cartoon.html">Cartoons</a>
+        </div>
+        <div class="footer-section">
+          <h3>Legal</h3>
+          <a href="terms.html">Terms of Service</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="disclaimer.html">Disclaimer</a>
+          <a href="dmca.html">DMCA</a>
+        </div>
+        <div class="footer-section">
+          <h3>Connect</h3>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61576333379034" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/jflix" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/jflix" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+          <a href="#" class="faq-link">FAQ</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 JFlix. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Donation Modal -->
+  <div id="donation-modal" class="modal-overlay">
+    <div class="modal-content" style="background-color: #2c2c2c; color: white; border-radius: 8px; max-width: 500px;">
+      <span class="close-btn" onclick="closeDonationModal()" style="position: absolute; top: 10px; right: 15px; color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; z-index:1;">&times;</span>
+      <div style="padding: 20px 30px 30px 30px; text-align: center;">
+        <h2 style="margin-top: 10px; margin-bottom:20px; font-size: 24px; display: flex; align-items: center; justify-content: center;">
+          <i class="fas fa-mug-hot" style="color: #ff4747; margin-right: 10px; font-size: 22px;"></i>Support JFlix
+        </h2>
+        <p style="font-size: 15px; margin: 20px 0; line-height: 1.6;">
+          Thank you for supporting JFlix! Your donation helps maintain and improve the service.
+        </p>
+        <div style="background-color: #1e2a38; padding: 20px; border-radius: 8px; margin: 25px auto; text-align: left;">
+          <h3 style="color: #ff4747; text-align: center; margin-top: 0; margin-bottom: 15px; font-size: 18px; font-weight: bold;">GCash Account Details</h3>
+          <p style="font-size: 15px; margin-bottom: 8px; color: #e0e0e0;"><strong>Account Number:</strong> 09761679955</p>
+          <p style="font-size: 15px; color: #e0e0e0;"><strong>Account Name:</strong> Jxxxel S.</p>
+        </div>
+        <button onclick="closeDonationModal()" style="background-color: #ff4747; color: white; border: none; padding: 10px 25px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin-top: 15px; border-radius: 20px; cursor: pointer; font-weight: bold; transition: background-color 0.3s ease;">
+          <i class="fas fa-heart" style="margin-right: 8px;"></i>Thank You!
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Donation Modal Functions
+    function openDonationModal() {
+      const modal = document.getElementById('donation-modal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeDonationModal() {
+      const modal = document.getElementById('donation-modal');
+      if (modal) modal.style.display = 'none';
+    }
+    
+    // Close modal when clicking outside the content
+    document.addEventListener('DOMContentLoaded', () => {
+        const donationModal = document.getElementById('donation-modal');
+        if (donationModal) {
+            donationModal.addEventListener('click', function(event) {
+              if (event.target === this) {
+                closeDonationModal();
+              }
+            });
+        }
+    });
+  </script>
+  <script type="text/javascript">
+    atOptions = {
+      'key' : '16bd3d63e3fa76356a75c7dd390644fb',
+      'format' : 'iframe',
+      'height' : 60,
+      'width' : 468,
+      'params' : {}
+    };
+  </script>
+  <div id="container-969efa09837f552e669338e2d030cbf1"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const installAppButton = document.getElementById('install-app-button');
+      const installModal = document.getElementById('install-app-modal');
+      const closeModalButton = installModal.querySelector('.close-button');
+
+      installAppButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        let videoSrc = '';
+
+        // Check for iOS/Safari
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+          if (navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
+              navigator.userAgent &&
+              navigator.userAgent.indexOf('CriOS') == -1 &&
+              navigator.userAgent.indexOf('FxiOS') == -1) {
+            videoSrc = 'images/iOS Safari.MP4';
+          }
+        }
+        // Check for Android/Chrome
+        else if (/android/i.test(userAgent)) {
+          if (/chrome/i.test(userAgent)) {
+            videoSrc = 'images/Android.mp4';
+          } else {
+            videoSrc = 'images/Android.mp4';
+          }
+        } else {
+          videoSrc = 'images/Android.mp4';
+        }
+
+        if (videoSrc) {
+          installVideo.querySelector('source').setAttribute('src', videoSrc);
+          installVideo.load();
+          installModal.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+          installVideo.play();
+        } else {
+          alert('Install instructions are not available for your device/browser.');
+        }
+      });
+
+      closeModalButton.addEventListener('click', function() {
+        installModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        installVideo.pause();
+      });
+
+      window.addEventListener('click', function(event) {
+        if (event.target == installModal) {
+          installModal.style.display = 'none';
+          document.body.style.overflow = 'auto';
+          installVideo.pause();
+        }
+      });
+    });
+  </script>
+<!-- Auth Modals -->
+<div id="login-modal" class="auth-modal">
+  <div class="auth-modal-content">
+    <span class="close-button">&times;</span>
+    <h2>Login</h2>
+    <form id="login-form">
+      <label for="login-email">Email</label>
+      <input type="email" id="login-email" required>
+      <label for="login-password">Password</label>
+      <input type="password" id="login-password" required>
+      <button type="submit">Login</button>
+    </form>
+    <p class="auth-message"></p> <!-- For inline messages -->
+    <a href="#" id="forgot-password-link" class="auth-modal-link">Forgot Password?</a>
+    <p class="auth-modal-link">Don't have an account? <a href="#" id="go-to-signup">Sign Up</a></p>
+  </div>
+</div>
+
+<div id="signup-modal" class="auth-modal">
+  <div class="auth-modal-content">
+    <span class="close-button">&times;</span>
+    <h2>Sign Up</h2>
+    <form id="signup-form">
+      <label for="signup-first-name">First Name</label>
+      <input type="text" id="signup-first-name" placeholder="First Name" required>
+      <label for="signup-last-name">Last Name</label>
+      <input type="text" id="signup-last-name" placeholder="Last Name" required>
+      <label for="signup-email">Email</label>
+      <input type="email" id="signup-email" placeholder="Email" required>
+      <label for="signup-password">Password (min. 6 characters)</label>
+      <input type="password" id="signup-password" placeholder="Password" required minlength="6">
+      <button type="submit">Sign Up</button>
+      <p class="signup-confirmation-note">Look for the Supabase Auth confirmation link in your email after clicking the signup</p>
+    </form>
+    <p class="auth-message"></p> <!-- For inline messages -->
+    <p class="auth-modal-link">Already have an account? <a href="#" id="go-to-login">Login</a></p>
+  </div>
+</div>
+
+<div id="password-reset-modal" class="auth-modal">
+  <div class="auth-modal-content">
+    <span class="close-button">&times;</span>
+    <h2>Reset Password</h2>
+    <form id="password-reset-form">
+      <label for="password-reset-email">Enter your email address:</label>
+      <input type="email" id="password-reset-email" required>
+      <button type="submit">Send Reset Link</button>
+    </form>
+    <p class="auth-message"></p> <!-- For inline messages -->
+    <p class="auth-modal-link"><a href="#" id="back-to-login-from-reset">Back to Login</a></p>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,163 @@
+/* Card fix styles for the unified website */
+
+/* Fix for card hover effects */
+.media-card {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s, z-index 0s 0.3s;
+}
+
+.media-card:hover {
+  z-index: 10;
+  transition: transform 0.3s, z-index 0s;
+}
+
+/* Fix for card overlay */
+.card-overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 15px;
+}
+
+/* Fix for card buttons */
+.card-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.card-buttons .btn {
+  flex: 1;
+  font-size: 0.75rem;
+  padding: 6px 0;
+  white-space: nowrap;
+}
+
+/* Fix for card info */
+.card-info {
+  padding: 10px 5px 5px;
+}
+
+/* Fix for card title overflow */
+.card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Fix for card rating and year */
+.card-rating, .card-year {
+  display: flex;
+  align-items: center;
+  height: 18px;
+}
+
+/* Fix for list scrolling */
+.list {
+  padding: 20px 0;
+  margin: 0 -40px;
+  padding: 20px 40px;
+  position: relative;
+}
+
+/* Add scroll indicators */
+.list::before,
+.list::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.list::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(20, 20, 20, 1), rgba(20, 20, 20, 0));
+}
+
+.list::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(20, 20, 20, 1), rgba(20, 20, 20, 0));
+}
+
+.list:hover::before,
+.list:hover::after {
+  opacity: 1;
+}
+
+/* Fix for list with few items */
+.list.few-items {
+  justify-content: flex-start;
+}
+
+/* Media specific styling */
+.media-card.anime .card-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(123, 104, 238, 0.4) 70%,
+    rgba(123, 104, 238, 0.8) 100%
+  );
+}
+
+.media-card.korean .card-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(255, 105, 180, 0.4) 70%,
+    rgba(255, 105, 180, 0.8) 100%
+  );
+}
+
+.media-card.movies .card-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(229, 9, 20, 0.4) 70%,
+    rgba(229, 9, 20, 0.8) 100%
+  );
+}
+
+.media-card.tvshows .card-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 113, 235, 0.4) 70%,
+    rgba(0, 113, 235, 0.8) 100%
+  );
+}
+
+/* Responsive fixes */
+@media (max-width: 768px) {
+  .list {
+    margin: 0 -20px;
+    padding: 20px 20px;
+  }
+  
+  .card-buttons {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .card-buttons .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .list {
+    gap: 10px;
+  }
+  
+  .card-overlay {
+    padding-bottom: 10px;
+  }
+}
