@@ -1,0 +1,148 @@
+.premium-banner {
+  background: linear-gradient(45deg, #ffc107, #ff9800);
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+  margin: 20px 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.premium-banner-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.premium-banner-text h3 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.pricing-tiers {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  justify-content: center;
+}
+
+.pricing-tier {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: transform 0.3s;
+}
+
+.pricing-tier:hover {
+  transform: scale(1.05);
+}
+
+.premium-upgrade-btn,
+.payment-btn {
+  background-color: #e50914;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s;
+  border: none;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.premium-upgrade-btn:hover,
+.payment-btn:hover {
+  background-color: #f40612;
+}
+
+/* Payment Modal Styles */
+.payment-modal {
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.payment-modal-content {
+  background-color: #1f1f1f;
+  margin: 15% auto;
+  padding: 25px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+}
+
+.payment-modal-close {
+  color: #aaa;
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.payment-modal-close:hover,
+.payment-modal-close:focus {
+  color: #fff;
+}
+
+/* --- Account Page Button Enhancements --- */
+
+/* Common styles for both buttons */
+.premium-ad-banner .premium-cta-button,
+.premium-ad-banner .payment-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+    padding: 10px 18px;
+    font-size: 0.95em;
+    font-weight: bold;
+    text-transform: none; /* Override uppercase */
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    margin-left: 10px; /* Add some space between buttons */
+}
+
+.premium-ad-banner .premium-cta-button i,
+.premium-ad-banner .payment-btn i {
+    font-size: 1.3em;
+}
+
+/* PayPal Button */
+.premium-ad-banner .premium-cta-button {
+    background-color: #0070ba; /* PayPal Blue */
+}
+
+.premium-ad-banner .premium-cta-button:hover {
+    background-color: #005ea6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* GCash/Maya Button */
+.premium-ad-banner .payment-btn {
+    background-color: #0D47A1; /* GCash Blue */
+}
+
+.premium-ad-banner .payment-btn:hover {
+    background-color: #0a3a82;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
