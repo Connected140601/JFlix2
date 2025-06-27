@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>My Account - JFlix</title>
+    <link rel="stylesheet" href="../css/common.css?v=1.1">
+    <link rel="stylesheet" href="../css/auth.css?v=1.1">
+    <link rel="stylesheet" href="../css/account.css?v=1.1">
+    <link rel="stylesheet" href="../css/premium-banner.css?v=1.1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script defer src="../js/navbar.js"></script>
+    <script defer src="../js/auth.js?v=1.5"></script>
+    <script defer src="../js/premium-banner.js?v=1.1"></script>
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/images/logo.svg">
+    <meta name="theme-color" content="#e50914">
+    <!-- Add any page-specific JS for account page later -->
+  <script src="/js/premium-redirect.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="../images/logo.svg" alt="JFlix Logo">
+        </div>
+        <button class="hamburger-menu" aria-label="Toggle navigation" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+            <span>Menu</span>
+        </button>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="movies.html" class="movies">Movies</a>
+            <a href="tvshows.html" class="tvshows">TV Shows</a>
+            <a href="anime.html" class="anime">Anime</a>
+            <a href="korean.html" class="korean">Korean TV</a>
+            <a href="cartoon.html" class="cartoon">Cartoons</a>
+            <a href="index.html?open_search=true" class="search-nav-link"><i class="fas fa-search"></i> Search</a>
+            <button id="login-button-nav" class="auth-nav-btn"><i class="fas fa-sign-in-alt"></i> Login / Sign Up</button>
+            <div id="auth-button-container" style="display: none;">
+                <!-- User info (email, logout button, or dropdown) will be injected here by JS -->
+            </div>
+        </div>
+    </div>
+
+    <main class="account-page-container"> <!-- Adjust min-height and margin-top as needed -->
+        <h1>My Account</h1>
+        <p>Welcome to your account page. More features coming soon!</p>
+
+        <div class="premium-ad-banner">
+            <h3>Experience JFlix Like Never Before!</h3>
+            <p>Get ad-free streaming, exclusive content, and more.</p>
+            <div class="premium-buttons">
+                <a href="../CODE/index.html" class="premium-cta-button"><i class="fab fa-paypal"></i> Paypal</a>
+                <button id="payment-btn" class="payment-btn"><i class="fas fa-wallet"></i> Pay with GCash or Maya</button>
+            </div>
+        </div>
+        
+        <div id="redeem-voucher-section">
+            <h2>Redeem Voucher</h2>
+            <p>Enter your voucher code below to activate or extend your JFlix access.</p>
+            <div class="voucher-input-group">
+                <input type="text" id="voucher-code-input" placeholder="Enter Voucher Code" aria-label="Voucher Code">
+                <button id="redeem-voucher-button" class="auth-nav-btn">
+                    <span class="button-text">Redeem</span>
+                    <div class="loader"></div>
+                </button>
+            </div>
+            <p id="voucher-message" style="display:none;"></p>
+        </div>
+
+        <div id="account-details">
+            <h2>Account Information</h2>
+            <p><strong>Email:</strong> <span id="account-email">Loading...</span></p>
+            <p><strong>First Name:</strong> <span id="account-first-name">Loading...</span></p>
+            <p><strong>Last Name:</strong> <span id="account-last-name">Loading...</span></p>
+            <p><strong>Status:</strong> <span id="account-status">Loading...</span></p>
+            <p id="premium-expiry" style="display: none;"><strong>Premium Until:</strong> <span id="premium-expiry-date"></span></p>
+            <!-- Add more fields or edit functionality later -->
+        </div>
+
+        <div id="password-reset-section">
+             <h2>Change Password</h2>
+             <p>If you need to change your password, you can request a password reset. An email will be sent to you with instructions.</p>
+             <button id="request-password-reset-button" class="auth-nav-btn">Request Password Reset</button>
+             <p id="password-reset-message" style="display:none;"></p>
+        </div>
+
+    </main>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="payment-modal">
+      <div class="payment-modal-content">
+        <span class="payment-modal-close">&times;</span>
+        <h2>How to Purchase a Voucher</h2>
+        <p>To get your premium access voucher, please follow these steps:</p>
+        <ol style="text-align: left; margin: 15px auto; max-width: 80%;">
+          <li>Visit our official Facebook Page.</li>
+          <li>Send us a direct message to initiate the purchase.</li>
+          <li>You can pay securely using GCash or Maya.</li>
+          <li>Once your payment is confirmed, you will receive a unique voucher code.</li>
+        </ol>
+        <a href="https://www.facebook.com/profile.php?id=61576333379034" class="btn" style="background-color: #1877f2; color: white;" target="_blank">Go to Facebook Page</a>
+      </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="images/logo.svg" alt="JFlix Logo">
+            </div>
+            <div class="footer-links">
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="dmca.html">DMCA</a>
+                <a href="disclaimer.html">Disclaimer</a>
+            </div>
+            <div class="footer-social">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> JFlix. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Include the auth modals (login, signup, reset password) -->
+    <!-- Login Modal -->
+    <div id="login-modal" class="auth-modal">
+      <div class="auth-modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Login</h2>
+        <form id="login-form">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" placeholder="Email" required>
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" placeholder="Password" required>
+          <button type="submit">Login</button>
+        </form>
+        <p class="auth-message" style="display: none;"></p>
+        <p class="auth-modal-link"><a href="#" id="forgot-password-link">Forgot Password?</a></p>
+        <p class="auth-modal-link">Don't have an account? <a href="#" id="go-to-signup">Sign Up</a></p>
+      </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="auth-modal">
+      <div class="auth-modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Sign Up</h2>
+        <form id="signup-form">
+          <label for="signup-first-name">First Name</label>
+          <input type="text" id="signup-first-name" placeholder="First Name" required>
+          <label for="signup-last-name">Last Name</label>
+          <input type="text" id="signup-last-name" placeholder="Last Name" required>
+          <label for="signup-email">Email</label>
+          <input type="email" id="signup-email" placeholder="Email" required>
+          <label for="signup-password">Password (min. 6 characters)</label>
+          <input type="password" id="signup-password" placeholder="Password" required minlength="6">
+          <button type="submit">Sign Up</button>
+        </form>
+        <p class="auth-message" style="display: none;"></p>
+        <p class="auth-modal-link">Already have an account? <a href="#" id="go-to-login-from-signup">Login</a></p>
+      </div>
+    </div>
+
+    <!-- Reset Password Modal -->
+    <div id="reset-password-modal" class="auth-modal">
+        <div class="auth-modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Reset Password</h2>
+            <form id="reset-password-form">
+                <label for="reset-email">Enter your email address:</label>
+                <input type="email" id="reset-email" placeholder="Email" required>
+                <button type="submit">Send Reset Link</button>
+            </form>
+            <p class="auth-message" style="display: none;"></p>
+            <p class="auth-modal-link"><a href="#" id="back-to-login-from-reset">Back to Login</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Basic script for account page to display user info and handle password reset
+        document.addEventListener('DOMContentLoaded', () => {
+            const supabase = window.supabaseClient; // Use the globally shared instance from auth.js
+
+            if (!supabase) {
+                console.error('Supabase client instance not found. Ensure auth.js is loaded correctly and exposes window.supabaseClient.');
+                // Display a user-friendly error on the page
+                const accountDetailsDiv = document.getElementById('account-details');
+                if (accountDetailsDiv) {
+                    accountDetailsDiv.innerHTML = '<p style="color: red;">Error: Application services are temporarily unavailable. Please try again later.</p>';
+                }
+                // Optionally, disable form elements if Supabase is not available
+                const requestPasswordResetButton = document.getElementById('request-password-reset-button');
+                if(requestPasswordResetButton) requestPasswordResetButton.disabled = true;
+                const redeemVoucherButton = document.getElementById('redeem-voucher-button');
+                if(redeemVoucherButton) redeemVoucherButton.disabled = true;
+                return; // Stop further script execution for account page features if Supabase isn't loaded
+            }
+
+            const accountEmailSpan = document.getElementById('account-email');
+            const accountFirstNameSpan = document.getElementById('account-first-name');
+            const accountLastNameSpan = document.getElementById('account-last-name');
+            const requestPasswordResetButton = document.getElementById('request-password-reset-button');
+            const passwordResetMessage = document.getElementById('password-reset-message');
+
+            // Function to update user's premium status in the profiles table
+            async function updateUserPremiumStatus(userId, validityDays) {
+                try {
+                    const supabaseClient = window.supabaseClient;
+                    if (!supabaseClient) {
+                        console.error('CRITICAL ERROR: window.supabaseClient is not defined in updateUserPremiumStatus. Halting operation.');
+                        // Optionally, provide user feedback here if this function is directly triggered by user action
+                        // For now, just logging and returning false as it's an internal function.
+                        return false;
+                    }
+                    
+                    // Calculate expiry date based on current date + validity days
+                    const now = new Date();
+                    const expiryDate = new Date(now);
+                    expiryDate.setDate(expiryDate.getDate() + validityDays);
+                    
+                    console.log('Updating premium status for user ID:', userId);
+                    console.log('Premium expires at:', expiryDate.toISOString());
+                    
+                    // Update the user's profile with premium status
+                    const { data, error } = await supabaseClient
+                        .from('profiles')
+                        .upsert({
+                            id: userId,
+                            is_premium: true,
+                            premium_expires_at: expiryDate.toISOString()
+                        }, { onConflict: 'id' });
+                        
+                    if (error) {
+                        console.error('Error updating user premium status:', error);
+                        return false;
+                    }
+                    
+                    console.log('Successfully updated user premium status in profiles table');
+                    return true;
+                } catch (e) {
+                    console.error('Error in updateUserPremiumStatus:', e);
+                    console.error('Error details:', e.message);
+                    return false;
+                }
+            }
+            
+            async function checkPremiumStatus(userId) {
+                const accountStatusSpan = document.getElementById('account-status');
+                const premiumExpiryElement = document.getElementById('premium-expiry');
+                const premiumExpiryDateSpan = document.getElementById('premium-expiry-date');
+                if (accountStatusSpan) accountStatusSpan.className = 'status-loading'; // Set initial loading class
+                
+                try {
+                    const supabaseClient = window.supabaseClient;
+                    if (!supabaseClient) {
+                        console.error('CRITICAL ERROR: window.supabaseClient is not defined in checkPremiumStatus. Halting operation.');
+                        if (accountStatusSpan) {
+                        accountStatusSpan.textContent = 'Error';
+                        accountStatusSpan.className = 'status-error';
+                    }
+                        return;
+                    }
+                    
+                    // Get the current user's email and ID
+                    const { data: { session } } = await supabaseClient.auth.getSession();
+                    if (!session || !session.user || !session.user.email) {
+                        throw new Error('User not logged in or email not available');
+                    }
+                    
+                    const userEmail = session.user.email;
+                    const userId = session.user.id;
+                    console.log('Checking premium status for user:', userEmail);
+                    console.log('User ID:', userId);
+                    
+                    // Get the current date
+                    const now = new Date();
+                    
+                    // Method 1: Check profiles table for premium status
+                    console.log('Checking profiles table for premium status');
+                    const { data: profileData, error: profileError } = await supabaseClient
+                        .from('profiles')
+                        .select('is_premium, premium_expires_at')
+                        .eq('id', userId)
+                        .single();
+                        
+                    if (!profileError && profileData && profileData.is_premium && profileData.premium_expires_at) {
+                        const expiryDate = new Date(profileData.premium_expires_at);
+                        if (expiryDate > now) {
+                            // User has premium status from profiles table
+                            updatePremiumUI(true, expiryDate);
+                            return true;
+                        }
+                    }
+                    
+                    // Method 2: Check vouchers table
+                    // First, let's check if there are any vouchers redeemed by this user
+                    console.log('Checking vouchers table for vouchers redeemed by user');
+                    let vouchersQuery = supabaseClient
+                        .from('vouchers')
+                        .select('*')
+                        .eq('is_used', true);
+                    
+                    // Try to add the user filter if the used_by column exists
+                    try {
+                        vouchersQuery = vouchersQuery.eq('used_by', userEmail);
+                    } catch (e) {
+                        console.log('Could not filter by used_by, might not exist in schema:', e);
+                        // If we can't filter by used_by, we'll rely on the profiles table check above
+                        updatePremiumUI(false);
+                        return false;
+                    }
+                    
+                    // Execute the query
+                    const { data: vouchers, error: vouchersError } = await vouchersQuery.order('used_at', { ascending: false });
+                    
+                    // Function to update the UI based on premium status
+                    function updatePremiumUI(isPremium, expiryDate = null) {
+                        if (isPremium && expiryDate) {
+                            // User has premium status
+                            if (accountStatusSpan) {
+                                accountStatusSpan.textContent = 'Premium';
+                                accountStatusSpan.className = 'status-premium';
+                            }
+                            
+                            if (premiumExpiryElement) premiumExpiryElement.style.display = 'block';
+                            if (premiumExpiryDateSpan) {
+                                const formattedDate = expiryDate.toLocaleDateString('en-US', {
+                                    year: 'numeric', 
+                                    month: 'long', 
+                                    day: 'numeric'
+                                });
+                                premiumExpiryDateSpan.textContent = formattedDate;
+                            }
+                        } else {
+                            // User does not have premium status
+                            if (accountStatusSpan) {
+                                accountStatusSpan.textContent = 'Free';
+                                accountStatusSpan.className = 'status-free';
+                            }
+                            
+                            if (premiumExpiryElement) premiumExpiryElement.style.display = 'none';
+                        }
+                    }
+                    
+                    if (vouchersError) {
+                        console.error(`Error fetching vouchers: ${vouchersError.message}`);
+                        updatePremiumUI(false);
+                        return false;
+                    }
+                    
+                    // Find the latest voucher with a valid expiry date
+                    let latestValidVoucher = null;
+                    let latestExpiryDate = null;
+                    
+                    if (vouchers && vouchers.length > 0) {
+                        for (const voucher of vouchers) {
+                            // Check if this voucher has an expires_at date
+                            if (voucher.expires_at) {
+                                const expiryDate = new Date(voucher.expires_at);
+                                if (expiryDate > now) {
+                                    // This voucher is still valid
+                                    if (!latestExpiryDate || expiryDate > latestExpiryDate) {
+                                        latestValidVoucher = voucher;
+                                        latestExpiryDate = expiryDate;
+                                    }
+                                }
+                            } else if (voucher.used_at && voucher.validity_days) {
+                                // Calculate expiry based on used_at + validity_days
+                                const usedDate = new Date(voucher.used_at);
+                                const expiryDate = new Date(usedDate);
+                                expiryDate.setDate(expiryDate.getDate() + voucher.validity_days);
+                                
+                                if (expiryDate > now) {
+                                    // This voucher is still valid
+                                    if (!latestExpiryDate || expiryDate > latestExpiryDate) {
+                                        latestValidVoucher = voucher;
+                                        latestExpiryDate = expiryDate;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    // Update the UI based on premium status
+                    if (latestValidVoucher && latestExpiryDate) {
+                        // User has premium status
+                        updatePremiumUI(true, latestExpiryDate);
+                        return true;
+                    } else {
+                        // User does not have premium status
+                        updatePremiumUI(false);
+                        return false;
+                    }
+                } catch (error) {
+                    console.error('Error checking premium status:', error);
+                    if (accountStatusSpan) accountStatusSpan.textContent = 'Status check failed';
+                    if (premiumExpiryElement) premiumExpiryElement.style.display = 'none';
+                    return false;
+                }
+            }
+            
+            async function loadUserData() {
+                const supabaseClient = window.supabaseClient;
+                if (!supabaseClient) {
+                    console.error('CRITICAL ERROR: window.supabaseClient is not defined in loadUserData. Halting operation.');
+                    if (accountEmailSpan) accountEmailSpan.textContent = 'Error loading user data.'; // Assuming accountEmailSpan is defined in this scope
+                    return;
+                }
+                const { data: { session }, error: sessionError } = await supabaseClient.auth.getSession();
+                if (sessionError) {
+                    console.error('Error getting session:', sessionError);
+                    if (accountEmailSpan) accountEmailSpan.textContent = 'Could not load user data.';
+                    return;
+                }
+
+                if (session && session.user) {
+                    // User is logged in, show account page content
+                    document.querySelector('.account-page-container').style.display = 'block';
+                    
+                    const user = session.user;
+                    if (accountEmailSpan) accountEmailSpan.textContent = user.email;
+                    if (accountFirstNameSpan) accountFirstNameSpan.textContent = user.user_metadata.first_name || 'Not set';
+                    if (accountLastNameSpan) accountLastNameSpan.textContent = user.user_metadata.last_name || 'Not set';
+                    
+                    // Check premium status
+                    await checkPremiumStatus(user.id);
+                } else {
+                    // Not logged in, redirect to home page and show login modal
+                    window.location.href = 'index.html?login=required';
+                }
+            }
+
+            if (requestPasswordResetButton) {
+                requestPasswordResetButton.addEventListener('click', async () => {
+                    const supabaseClient = window.supabaseClient;
+                    if (!supabaseClient) {
+                        console.error('CRITICAL ERROR: window.supabaseClient is not defined in password reset. Halting operation.');
+                        passwordResetMessage.textContent = 'A critical error occurred. Please try again later.';
+                        passwordResetMessage.classList.add('error');
+                        passwordResetMessage.style.display = 'block';
+                        return;
+                    }
+
+                    const { data: { session } } = await supabaseClient.auth.getSession();
+                    
+                    // Clear previous styling classes and ensure message area is visible
+                    passwordResetMessage.classList.remove('success', 'error'); 
+                    passwordResetMessage.style.display = 'block';
+
+                    if (session && session.user) {
+                        const { error } = await supabaseClient.auth.resetPasswordForEmail(session.user.email, {
+                            redirectTo: window.location.origin + '/index.html?reset=true' // Or a dedicated password update page
+                        });
+                        if (error) {
+                            passwordResetMessage.textContent = 'Error sending password reset email: ' + error.message;
+                            passwordResetMessage.classList.add('error');
+                        } else {
+                            passwordResetMessage.textContent = 'Password reset email sent! Please check your inbox.';
+                            passwordResetMessage.classList.add('success');
+                        }
+                    } else {
+                        passwordResetMessage.textContent = 'You must be logged in to reset your password.';
+                        passwordResetMessage.classList.add('error');
+                    }
+                });
+            }
+            
+            // Load user data when the page loads
+            loadUserData();
+
+            // --- Start of new code for Voucher Redemption ---
+            const voucherCodeInput = document.getElementById('voucher-code-input');
+            const redeemVoucherButton = document.getElementById('redeem-voucher-button');
+            const voucherMessage = document.getElementById('voucher-message');
+
+            async function redeemVoucher() {
+                const redeemButton = document.getElementById('redeem-voucher-button');
+                const voucherMessage = document.getElementById('voucher-message');
+                const voucherCodeInput = document.getElementById('voucher-code-input');
+
+                // Start loading state
+                redeemButton.classList.add('loading');
+                redeemButton.disabled = true;
+                voucherMessage.textContent = '';
+                voucherMessage.classList.remove('success', 'error');
+                voucherMessage.style.display = 'none';
+
+                try {
+                    const code = voucherCodeInput.value.trim();
+
+                    if (!code) {
+                        voucherMessage.textContent = 'Please enter a voucher code.';
+                        voucherMessage.classList.add('error');
+                    } else {
+                        const supabaseClient = window.supabaseClient;
+                        if (!supabaseClient) {
+                            voucherMessage.textContent = 'A critical error occurred. Please try again later.';
+                            voucherMessage.classList.add('error');
+                        } else {
+                            const { data: { session }, error: sessionError } = await supabaseClient.auth.getSession();
+
+                            if (sessionError || !session || !session.user) {
+                                voucherMessage.textContent = 'You must be logged in to redeem a voucher.';
+                                voucherMessage.classList.add('error');
+                            } else {
+                                const user = session.user;
+                                const { data: voucherData, error: voucherError } = await supabaseClient
+                                    .from('vouchers')
+                                    .select('id, voucher_code, validity_days, is_used')
+                                    .eq('voucher_code', code)
+                                    .single();
+
+                                if (voucherError || !voucherData) {
+                                    voucherMessage.textContent = 'Invalid voucher code.';
+                                    voucherMessage.classList.add('error');
+                                } else if (voucherData.is_used) {
+                                    voucherMessage.textContent = 'This voucher has already been redeemed.';
+                                    voucherMessage.classList.add('error');
+                                } else {
+                                    // This is the success path
+                                    const { error: updateVoucherError } = await supabaseClient
+                                        .from('vouchers')
+                                        .update({
+                                            is_used: true,
+                                            used_at: new Date().toISOString(),
+                                            used_by: user.email
+                                        })
+                                        .eq('id', voucherData.id);
+
+                                    if (updateVoucherError) {
+                                        // Throwing an error here will be caught by the outer catch block.
+                                        throw new Error('Could not update voucher status: ' + updateVoucherError.message);
+                                    }
+
+                                    await updateUserPremiumStatus(user.id, voucherData.validity_days);
+
+                                    voucherMessage.textContent = `Voucher redeemed successfully! Your access is extended by ${voucherData.validity_days} days.`;
+                                    voucherMessage.classList.add('success');
+                                    voucherCodeInput.value = '';
+
+                                    await checkPremiumStatus(user.id);
+                                }
+                            }
+                        }
+                    }
+                } catch (error) {
+                    console.error('Voucher redemption process error:', error);
+                    voucherMessage.textContent = error.message || 'An unexpected error occurred.';
+                    voucherMessage.classList.add('error');
+                } finally {
+                    // End loading state
+                    redeemButton.classList.remove('loading');
+                    redeemButton.disabled = false;
+                    if (voucherMessage.textContent) {
+                        voucherMessage.style.display = 'block';
+                    }
+                }
+            }
+
+            if (redeemVoucherButton) {
+                redeemVoucherButton.addEventListener('click', redeemVoucher);
+            }
+            // --- End of new code for Voucher Redemption ---
+        }); // End of DOMContentLoaded>
+    </script>
+</body>
+</html>
